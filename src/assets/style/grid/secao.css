@@ -15,12 +15,17 @@
 
 .secao__cartoes {
     display: grid;
+    row-gap: 1rem;
+    --gap-column: 1.25rem;
+    column-gap: var(--gap-column);
+    --gap-prop: var(--gap-column) * (var(--quant-max-column) -1) / var(--quant-max-column);
+
     /*largura minima da coluna*/
-    --larg-min-column: 100%/2;
+    --larg-min-column: 100%/2 - var(--gap-prop);
 
     /*Largura maxima da coluna*/
     --max-larg-max-column: 100%/var(--quant-max-column);
-    --larg-max-column: max(var(--min-larg-max-column), var(--max-larg-max-column));
+    --larg-max-column: max(var(--min-larg-max-column), var(--max-larg-max-column) - var(--gap-prop));
     --min: min(var(--larg-min-column), var(--larg-max-column));
     grid-template-columns: repeat(auto-fit, minmax(var(--min), 1fr)); 
 }
